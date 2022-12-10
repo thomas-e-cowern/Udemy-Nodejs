@@ -37,6 +37,10 @@ var server = http.createServer(function(req, res) {
         buffer += stringDecoder.write(data);
     });
 
+    req.on('end', function() {
+        buffer += stringDecoder.end();
+    });
+
     // Send response
     res.end("Hello World\n");
 
