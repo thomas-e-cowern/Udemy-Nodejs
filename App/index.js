@@ -69,11 +69,11 @@ var server = http.createServer(function(req, res) {
             res.end(payloadString)
         });
 
-        console.log('Payload: ', buffer )
+        console.log('Response: ', statusCode, ' Payload: ', payloadString )
     });
 
     // Send response
-    res.end("Hello World\n");
+    // res.end("Hello World\n");
 
     // Log path requested
     // console.log('Path: ' + path )
