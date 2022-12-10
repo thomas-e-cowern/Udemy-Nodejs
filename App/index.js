@@ -5,8 +5,10 @@
 */
 
 // Dependencies
-var http = require('http')
+var http = require('http');
+const {StringDecoder} = require('string_decoder');
 var url = require('url')
+var stringDecoder = require('string_decoder').StringDecoder;
 
 // The server will respond with a string
 var server = http.createServer(function(req, res) {
@@ -27,6 +29,14 @@ var server = http.createServer(function(req, res) {
     // get the headers as an object
     var headers = req.headers
 
+    // get the payload
+    var stringDecoder = new StringDecoder('utf-8')
+    var buffer = '';
+
+    req.on('data', function(data) {
+        buffer += stringDecoder.write(data);
+    });
+
     // Send response
     res.end("Hello World\n");
 
@@ -36,6 +46,7 @@ var server = http.createServer(function(req, res) {
     // console.log('Mehod: ' + method )
     // console.log('Query: ', queryString )
     console.log('Headers: ', headers )
+    console.log('Payload: ', buffer )
 })
 
 // Start the server and listen at port 3000
