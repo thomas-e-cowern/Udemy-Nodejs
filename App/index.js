@@ -18,6 +18,9 @@ var server = http.createServer(function(req, res) {
     var path = parsedUrl.pathname;
     var trimmedPath = path.replace(/\/+|\/+$/g,'')
 
+    // Get the query string
+    var queryString = parsedUrl.query
+
     // Get http method
     var method = req.method
 
@@ -28,6 +31,7 @@ var server = http.createServer(function(req, res) {
     console.log('Path: ' + path )
     console.log('Trimmed Path: ' + trimmedPath )
     console.log('Mehod: ' + method )
+    console.log('Query: ', queryString )
 })
 
 // Start the server and listen at port 3000
