@@ -59,3 +59,21 @@ var server = http.createServer(function(req, res) {
 server.listen(3000, function(){
     console.log("The server is listening on port 3000")
 })
+
+// Handerls
+var handlers = {}
+
+// Sample handler
+handlers.sample = function(data, callback) {
+    // Callback http status code and payload
+    callback(406, {'name:"Sample Handler'})
+}
+
+handlers.notFound = function(data, callback) {
+     callback(404)
+}
+
+// Router
+var router = {
+    'sample' : handlers.sample
+}
