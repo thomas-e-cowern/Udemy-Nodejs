@@ -40,6 +40,35 @@ var server = http.createServer(function(req, res) {
     req.on('end', function() {
         buffer += stringDecoder.end();
 
+        // Choose handler, not found is default
+        var chosendHandler = typeof(router[trimmedPath]) !== undefined ? router[trimmedPath] : handlers.notFound
+
+        // Contruct data object
+        var data = {
+            'trimmedPath' : trimmedPath,
+            'queryString' : queryString,
+            'method' : method,
+            'headers' : headers,
+            'payload' : payload
+        }
+
+        // Route request to handler
+        chosendHandler(data, function(statusCode, payload) {
+            // status code or default
+            statusCode = typeof(statusCode) == 'number' ? statusCode : 200
+
+            // use payload or default to empty object
+            payload = typeof(payload) == 'object' ? payload : {};
+
+            // Conver to string
+            var payloadString = JSON.stringify(payload);
+
+            // Return response
+            res.writeHead(statusCode)
+
+            res.end(payloadString)
+        });
+
         console.log('Payload: ', buffer )
     });
 
@@ -66,7 +95,7 @@ var handlers = {}
 // Sample handler
 handlers.sample = function(data, callback) {
     // Callback http status code and payload
-    callback(406, {'name:"Sample Handler'})
+    callback(406, {'name':'Sample Handler'})
 }
 
 handlers.notFound = function(data, callback) {
