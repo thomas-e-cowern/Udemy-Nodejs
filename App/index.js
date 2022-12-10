@@ -39,6 +39,8 @@ var server = http.createServer(function(req, res) {
 
     req.on('end', function() {
         buffer += stringDecoder.end();
+
+        console.log('Payload: ', buffer )
     });
 
     // Send response
@@ -50,7 +52,7 @@ var server = http.createServer(function(req, res) {
     // console.log('Mehod: ' + method )
     // console.log('Query: ', queryString )
     console.log('Headers: ', headers )
-    console.log('Payload: ', buffer )
+    
 })
 
 // Start the server and listen at port 3000
