@@ -41,7 +41,7 @@ var server = http.createServer(function(req, res) {
         buffer += stringDecoder.end();
 
         // Choose handler, not found is default
-        var chosendHandler = typeof(router[trimmedPath]) !== undefined ? router[trimmedPath] : handlers.notFound
+        var chosenHandler = typeof(router[trimmedPath]) !== 'undefined' ? router[trimmedPath] : handlers.notFound;
 
         // Contruct data object
         var data = {
@@ -49,11 +49,11 @@ var server = http.createServer(function(req, res) {
             'queryString' : queryString,
             'method' : method,
             'headers' : headers,
-            'payload' : payload
-        }
+            'payload' : buffer
+        };
 
         // Route request to handler
-        chosendHandler(data, function(statusCode, payload) {
+        chosenHandler(data, function(statusCode, payload) {
             // status code or default
             statusCode = typeof(statusCode) == 'number' ? statusCode : 200
 
@@ -67,9 +67,11 @@ var server = http.createServer(function(req, res) {
             res.writeHead(statusCode)
 
             res.end(payloadString)
+
+            console.log('Response: ', statusCode, ' Payload: ', payloadString )
         });
 
-        console.log('Response: ', statusCode, ' Payload: ', payloadString )
+        
     });
 
     // Send response
