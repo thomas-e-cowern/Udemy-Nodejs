@@ -9,7 +9,7 @@ var http = require('http')
 
 // The server will respond with a string
 var server = http.createServer(function(req, res) {
-    res.sendDate("Hellow World\n")
+    res.end("Hello World\n")
 })
 
 // Start the server and listen at port 3000
