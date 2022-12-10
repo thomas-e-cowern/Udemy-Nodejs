@@ -22,3 +22,6 @@ var currentEnvironment = typeof(process.env.NODE_ENV) == 'string' ? process.env.
 
 // check current environment is authorized, if not set to default
 var environmentToExport = typeof(environments[currentEnvironment]) == 'object' ? environments[currentEnvironment] : environments.staging;
+
+// Exports
+module.exports = environmentToExport;
