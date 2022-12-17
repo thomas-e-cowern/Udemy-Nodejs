@@ -104,17 +104,6 @@ var unifiedServer = function(req, res) {
     });
 };
 
-// Handerls
-var handlers = {}
-
-handlers.ping = function(data, callback) {
-    callback(200)
-}
-
-handlers.notFound = function(data, callback) {
-     callback(404)
-}
-
 // Router
 var router = {
     'ping' : handlers.ping
