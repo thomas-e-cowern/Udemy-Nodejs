@@ -4,8 +4,8 @@
 *
 */
 
-var _data = require('./data');
-var helpers = require('./helpers');
+import {read} from './data';
+import {hash} from './helpers';
 
 var handlers = {}
 
@@ -35,10 +35,10 @@ handlers._users.post = function(data, callback) {
 
     if (firstName && lastName && phone && password && tosAgreement) {
         // make sure the user does not exist
-       _data.read('users', phone, function(err, data) {
+       read('users', phone, function(err, data) {
             if (err) {
                 // hash password
-                var hashedPassword = helpers.hash(password)
+                var hashedPassword = hash(password)
             } else {
                 callback(400, { 'Error' : 'A user with that phone number already exists' })
             }
