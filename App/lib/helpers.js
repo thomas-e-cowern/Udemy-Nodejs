@@ -4,10 +4,11 @@
 *
 */
 
-var config = require('./../config');
+
 
 // Depencies
 var crypto = require('crypto');
+var config = require('./../config'); 
 
 // Helpers container
 var helpers = {};
@@ -27,13 +28,10 @@ helpers.hash = function(str) {
 helpers.parseJsonToObject = function (str) {
     try {
         var obj = JSON.parse(str);
-        return obj
+        return obj;
     } catch (err) {
         return {}
     }
 }
-
-
-
 
 module.exports = helpers;
