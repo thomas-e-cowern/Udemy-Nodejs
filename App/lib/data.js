@@ -37,5 +37,10 @@ lib.create = function(dir, file, data, callback) {
     });
 }
 
+lib.read - function(dir, file, callback) {
+    fs.readFile(lib.baseDir + dir + '/' + file + '.json', 'utf-8', function(err, data) {
+        callback(err, data)
+    });
+};
 // Module export
 module.exports = lib;
