@@ -19,6 +19,10 @@ var _data = require('./lib/data')
 //     console.log('DEBUG: Error in create: ', err);
 // })
 
+_data.update('test', 'newFile', {'name' : 'bill'}, function(err) {
+    console.log('DEBUG: Error in update: ', err);
+})
+
 _data.read('test', 'newFile', function(err, data) {
     if (err) {
         console.log('Error reading data: ', err)
