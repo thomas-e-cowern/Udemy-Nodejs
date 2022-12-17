@@ -12,6 +12,12 @@ var url = require('url')
 var stringDecoder = require('string_decoder').StringDecoder;
 var config = require('./config')
 var fileSystem = require('fs')
+var _data = require('./lib/data')
+
+// Testing
+_data.create('test', 'newFile', {'foo' : 'bar'}, function(err) {
+    console.log('DEBUG: Error in create: ', err);
+})
 
 // Instantiating http server
 var httpServer = http.createServer(function(req, res) {
