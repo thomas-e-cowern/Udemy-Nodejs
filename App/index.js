@@ -12,6 +12,7 @@ var url = require('url')
 var stringDecoder = require('string_decoder').StringDecoder;
 var config = require('./config')
 var fileSystem = require('fs')
+var handlers = require('./lib/handlers');
 
 // Instantiating http server
 var httpServer = http.createServer(function(req, res) {
