@@ -12,32 +12,6 @@ var url = require('url')
 var stringDecoder = require('string_decoder').StringDecoder;
 var config = require('./config')
 var fileSystem = require('fs')
-var _data = require('./lib/data')
-
-// Testing
-// _data.create('test', 'newFile', {'foo' : 'bar'}, function(err) {
-//     console.log('DEBUG: Error in create: ', err);
-// })
-
-// _data.update('test', 'newFile', {'name' : 'bill'}, function(err) {
-//     console.log('DEBUG: Error in update: ', err);
-// })
-
-// _data.read('test', 'newFile', function(err, data) {
-//     if (err) {
-//         console.log('Error reading data: ', err)
-//     } else {
-//         console.log(data)
-//     }
-// })
-
-_data.delete('test', 'newFile', function(err) {
-    if (err) {
-        console.log('Error deleting data: ', err)
-    } else {
-        console.log('Deleted!')
-    }
-})
 
 // Instantiating http server
 var httpServer = http.createServer(function(req, res) {
