@@ -13,6 +13,7 @@ var stringDecoder = require('string_decoder').StringDecoder;
 var config = require('./config')
 var fileSystem = require('fs')
 var handlers = require('./lib/handlers');
+var helpers = require('./lib/helpers');
 
 // Instantiating http server
 var httpServer = http.createServer(function(req, res) {
@@ -80,7 +81,7 @@ var unifiedServer = function(req, res) {
             'queryString' : queryString,
             'method' : method,
             'headers' : headers,
-            'payload' : buffer
+            'payload' : helpers.parseJsonToObject(buffer)
         };
 
         // Route request to handler

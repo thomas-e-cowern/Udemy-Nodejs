@@ -21,6 +21,16 @@ helpers.hash = function(str) {
     } else {
         return false;
     }
+};
+
+// Parse string and return value if valid
+helpers.parseJsonToObject = function (str) {
+    try {
+        var obj = JSON.parse(str);
+        return obj
+    } catch (err) {
+        return {}
+    }
 }
 
 
