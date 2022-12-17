@@ -16,6 +16,31 @@ handlers.users = function(data, callback) {
     }
 };
 
+// user containers
+handlers._users = {};
+
+// post users
+// required data: firstName, lastName, phone, password, tosAgreement
+// optional data: none
+handlers._users.post = function(data, callback) {
+
+}
+
+// get users
+handlers._users.get = function(data, callback) {
+
+}
+
+// put users
+handlers._users.post = function(data, callback) {
+
+}
+
+// delete users
+handlers._users.delete = function(data, callback) {
+
+}
+
 // pin handler
 handlers.ping = function(data, callback) {
     callback(200)
