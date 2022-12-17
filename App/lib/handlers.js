@@ -41,12 +41,26 @@ handlers._users.post = function(data, callback) {
                 var hashedPassword = helpers.hash(password)
 
                 // create user
-                var userObject = {
-                    'firstName' : firstName,
-                    'lastName' : lastName,
-                    'phone' : phone,
-                    'password' : hashedPassword,
-                    'tosAgreement' : tosAgreement
+                if (hashedPassword) {
+                    var userObject = {
+                        'firstName' : firstName,
+                        'lastName' : lastName,
+                        'phone' : phone,
+                        'password' : hashedPassword,
+                        'tosAgreement' : true
+                    };
+    
+                    // store user
+                    _data.create('users', phone, userObject, function(err) {
+                        if (!err) {
+                            callback(200)
+                        } else {
+                            console.log("DEBUG: Error creating user: ", err)
+                            callback(500, { "Error " : "Could not crreate the new user" })
+                        }
+                    })
+                } else {
+                    callback(500, { "Error " : "There was a problem hashing the password" })
                 }
             } else {
                 callback(400, { 'Error' : 'A user with that phone number already exists' })
