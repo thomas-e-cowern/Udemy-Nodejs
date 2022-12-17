@@ -19,15 +19,23 @@ var _data = require('./lib/data')
 //     console.log('DEBUG: Error in create: ', err);
 // })
 
-_data.update('test', 'newFile', {'name' : 'bill'}, function(err) {
-    console.log('DEBUG: Error in update: ', err);
-})
+// _data.update('test', 'newFile', {'name' : 'bill'}, function(err) {
+//     console.log('DEBUG: Error in update: ', err);
+// })
 
-_data.read('test', 'newFile', function(err, data) {
+// _data.read('test', 'newFile', function(err, data) {
+//     if (err) {
+//         console.log('Error reading data: ', err)
+//     } else {
+//         console.log(data)
+//     }
+// })
+
+_data.delete('test', 'newFile', function(err) {
     if (err) {
-        console.log('Error reading data: ', err)
+        console.log('Error deleting data: ', err)
     } else {
-        console.log(data)
+        console.log('Deleted!')
     }
 })
 
