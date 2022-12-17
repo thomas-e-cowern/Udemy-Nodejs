@@ -14,25 +14,13 @@ var config = require('./config')
 // The server will respond with a string
 var server = http.createServer(function(req, res) {
 
-    
-        
-    
-
-    // Send response
-    // res.end("Hello World\n");
-
-    // Log path requested
-    // console.log('Path: ' + path )
-    // console.log('Trimmed Path: ' + trimmedPath )
-    // console.log('Mehod: ' + method )
-    // console.log('Query: ', queryString )
-    console.log('Headers: ', headers )
+    unifiedServer(req, res)
     
 })
 
 // Start the server and listen at port 3000
-server.listen(config.port, function(){
-    console.log("The server is listening on port " + config.port + " in " + config.envName + " mode.");
+server.listen(config.httpPort, function(){
+    console.log("The server is listening on port " + config.httpPort + " in " + config.envName + " mode.");
 })
 
 // Unified server to handle both http and https
