@@ -4,6 +4,9 @@
 *
 */
 
+var _data = require('./data');
+var helpers = require('./helpers';)
+
 var handlers = {}
 
 // users handler
@@ -29,6 +32,21 @@ handlers._users.post = function(data, callback) {
     var phone = typeof(data.payload.phone) == 'string' && data.payload.phone.trim().length == 10 ? data.payload.phone.trim() : false;
     var password = typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0 ? data.payload.password.trim() : false;
     var tosAgreement = typeof(data.payload.tosAgreement) == 'boolean' && data.payload.tosAgreement == true ? true : false
+
+    if (firstName && lastName && phone && password && tosAgreement) {
+        // make sure the user does not exist
+       _data.read('users', phone, function(err, data) {
+            if (err) {
+                // hash password
+                var hashedPassword = helpers.hash(password)
+            } else {
+                callback(400, { 'Error' : 'A user with that phone number already exists' })
+            }
+       });
+
+    } else {
+        callback(400, {'Error' : 'Missing required fields'})
+    };
 }
 
 // get users
