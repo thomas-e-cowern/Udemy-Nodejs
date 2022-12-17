@@ -15,8 +15,16 @@ var fileSystem = require('fs')
 var _data = require('./lib/data')
 
 // Testing
-_data.create('test', 'newFile', {'foo' : 'bar'}, function(err) {
-    console.log('DEBUG: Error in create: ', err);
+// _data.create('test', 'newFile', {'foo' : 'bar'}, function(err) {
+//     console.log('DEBUG: Error in create: ', err);
+// })
+
+_data.read('test', 'newFile', function(err, data) {
+    if (err) {
+        console.log('Error reading data: ', err)
+    } else {
+        console.log(data)
+    }
 })
 
 // Instantiating http server
