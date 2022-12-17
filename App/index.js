@@ -14,6 +14,29 @@ var config = require('./config')
 // The server will respond with a string
 var server = http.createServer(function(req, res) {
 
+    
+        
+    
+
+    // Send response
+    // res.end("Hello World\n");
+
+    // Log path requested
+    // console.log('Path: ' + path )
+    // console.log('Trimmed Path: ' + trimmedPath )
+    // console.log('Mehod: ' + method )
+    // console.log('Query: ', queryString )
+    console.log('Headers: ', headers )
+    
+})
+
+// Start the server and listen at port 3000
+server.listen(config.port, function(){
+    console.log("The server is listening on port " + config.port + " in " + config.envName + " mode.");
+})
+
+// Unified server to handle both http and https
+var unifiedServer = function(req, res) {
     // Get and parse url
     var parsedUrl = url.parse(req.url, true);
 
@@ -72,26 +95,8 @@ var server = http.createServer(function(req, res) {
 
             console.log('Response: ', statusCode, ' Payload: ', payloadString )
         });
-
-        
     });
-
-    // Send response
-    // res.end("Hello World\n");
-
-    // Log path requested
-    // console.log('Path: ' + path )
-    // console.log('Trimmed Path: ' + trimmedPath )
-    // console.log('Mehod: ' + method )
-    // console.log('Query: ', queryString )
-    console.log('Headers: ', headers )
-    
-})
-
-// Start the server and listen at port 3000
-server.listen(config.port, function(){
-    console.log("The server is listening on port " + config.port + " in " + config.envName + " mode.");
-})
+};
 
 // Handerls
 var handlers = {}
