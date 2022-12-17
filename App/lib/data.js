@@ -3,6 +3,7 @@
 // Depencies
 var fs = require('fs');
 var path = require('path');
+var helpers = require('./helpers');
 
 // Container for the module
 var lib = {}
@@ -37,11 +38,17 @@ lib.create = function(dir, file, data, callback) {
     });
 }
 
-lib.read = function(dir, file, callback) {
-    fs.readFile(lib.baseDir + dir + '/' + file + '.json', 'utf-8', function(err, data) {
-        callback(err, data)
+// Read data from a file
+lib.read = function(dir,file,callback){
+    fs.readFile(lib.baseDir+dir+'/'+file+'.json', 'utf8', function(err,data){
+      if(!err && data){
+        var parsedData = helpers.parseJsonToObject(data);
+        callback(false,parsedData);
+      } else {
+        callback(err,data);
+      }
     });
-};
+  };  
 
 lib.update = function(dir, file, data, callback) {
     // Open file for writing
