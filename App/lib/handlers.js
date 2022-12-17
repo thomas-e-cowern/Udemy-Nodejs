@@ -5,7 +5,7 @@
 */
 
 var _data = require('./data');
-var helpers = require('./helpers';)
+var helpers = require('./helpers');
 
 var handlers = {}
 
