@@ -4,7 +4,7 @@
 *
 */
 
-import {config} from 'process';
+var config = require('./../config');
 
 // Depencies
 var crypto = require('crypto');
@@ -26,4 +26,4 @@ helpers.hash = function(str) {
 
 
 
-export default helpers;
+module.exports = helpers;
